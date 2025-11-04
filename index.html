@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Осенний свет для праздника</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Tangerine:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="color-wash" aria-hidden="true"></div>
+    <canvas id="leaf-canvas" aria-hidden="true"></canvas>
+    <canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+    <div class="fox-companion" data-fox aria-live="polite">
+      <div class="fox-speech" hidden></div>
+      <div class="fox-avatar" role="img" aria-label="Лиса Нори">
+        <svg class="fox-illustration" viewBox="0 0 220 220" aria-hidden="true">
+          <defs>
+            <linearGradient id="foxGradientTail" x1="20%" y1="20%" x2="85%" y2="85%">
+              <stop offset="0%" stop-color="#ffd8b0" />
+              <stop offset="45%" stop-color="#ff9d67" />
+              <stop offset="100%" stop-color="#eb5c60" />
+            </linearGradient>
+            <linearGradient id="foxGradientTailTip" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff7ef" />
+              <stop offset="100%" stop-color="#ffd4c4" />
+            </linearGradient>
+            <linearGradient id="foxGradientBody" x1="25%" y1="15%" x2="85%" y2="95%">
+              <stop offset="0%" stop-color="#ff9759" />
+              <stop offset="100%" stop-color="#ff4e63" />
+            </linearGradient>
+            <radialGradient id="foxGradientChest" cx="50%" cy="35%" r="70%">
+              <stop offset="0%" stop-color="#fff7ef" />
+              <stop offset="60%" stop-color="#ffdecc" />
+              <stop offset="100%" stop-color="#ffc7b6" />
+            </radialGradient>
+            <radialGradient id="foxGradientFace" cx="52%" cy="32%" r="78%">
+              <stop offset="0%" stop-color="#ffa66c" />
+              <stop offset="100%" stop-color="#ff5b72" />
+            </radialGradient>
+            <radialGradient id="foxGradientMask" cx="52%" cy="40%" r="80%">
+              <stop offset="0%" stop-color="#fff6ef" />
+              <stop offset="55%" stop-color="#ffe0d2" />
+              <stop offset="100%" stop-color="#ffc8ba" />
+            </radialGradient>
+            <linearGradient id="foxGradientEar" x1="25%" y1="10%" x2="80%" y2="100%">
+              <stop offset="0%" stop-color="#ffb982" />
+              <stop offset="100%" stop-color="#ff6f73" />
+            </linearGradient>
+            <radialGradient id="foxGradientEarInner" cx="50%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#fff2f1" />
+              <stop offset="100%" stop-color="#ffbed3" />
+            </radialGradient>
+            <radialGradient id="foxGradientEyeWhite" cx="48%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="100%" stop-color="#f3e9ff" />
+            </radialGradient>
+            <radialGradient id="foxGradientEyeIris" cx="50%" cy="62%" r="60%">
+              <stop offset="0%" stop-color="#6048a8" />
+              <stop offset="70%" stop-color="#2e1a54" />
+              <stop offset="100%" stop-color="#10081f" />
+            </radialGradient>
+            <linearGradient id="foxGradientNose" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#3a1d33" />
+              <stop offset="100%" stop-color="#1b0d24" />
+            </linearGradient>
+          </defs>
+          <g transform="translate(32,26)" class="fox-illustration__root">
+            <g class="fox-illustration__tail">
+              <path
+                d="M148 148c36-12 58-56 36-94-18-28-52-42-92-36 32 4 54 32 48 64-6 30-40 58-80 70 32 16 64 14 88-4z"
+                fill="url(#foxGradientTail)"
+                opacity="0.9"
+              />
+              <path
+                d="M150 90c12 16 4 44-24 58-16 8-34 10-42 10 18-14 48-46 66-68z"
+                fill="url(#foxGradientTailTip)"
+                opacity="0.8"
+              />
+            </g>
+            <g class="fox-illustration__body">
+              <path
+                d="M96 28c-36 0-66 28-66 68 0 40 28 70 62 70 40 0 72-34 70-76-2-36-24-62-66-62z"
+                fill="url(#foxGradientBody)"
+              />
+              <path
+                d="M96 92c-30 0-50 18-50 44s22 44 48 44c34 0 56-26 54-52-2-24-20-36-52-36z"
+                fill="url(#foxGradientChest)"
+              />
+            </g>
+            <g class="fox-illustration__head">
+              <path
+                d="M94-6c-40 0-72 32-70 72 2 38 28 66 66 66 42 0 76-34 72-76C158 22 132-6 94-6z"
+                fill="url(#foxGradientFace)"
+              />
+              <path
+                d="M94 26c-30 0-50 18-48 44 2 30 22 50 48 50 32 0 52-24 50-54-2-26-18-40-50-40z"
+                fill="url(#foxGradientMask)"
+              />
+              <path
+                d="M66 0c-18-8-42 18-46 44-4 24 6 38 20 42 16 4 30-8 32-24 2-16 0-44-6-62z"
+                fill="url(#foxGradientEar)"
+              />
+              <path
+                d="M122 0c18-8 42 18 46 44 4 24-6 38-20 42-16 4-30-8-32-24-2-16 0-44 6-62z"
+                fill="url(#foxGradientEar)"
+              />
+              <path d="M66 12c-12-6-30 14-32 32-2 16 6 24 18 26 10 2 18-6 20-16 2-12 0-30-6-42z" fill="url(#foxGradientEarInner)" />
+              <path d="M122 12c12-6 30 14 32 32 2 16-6 24-18 26-10 2-18-6-20-16-2-12 0-30 6-42z" fill="url(#foxGradientEarInner)" />
+              <ellipse cx="78" cy="86" rx="16" ry="20" fill="url(#foxGradientEyeWhite)" />
+              <ellipse cx="110" cy="86" rx="16" ry="20" fill="url(#foxGradientEyeWhite)" />
+              <ellipse cx="78" cy="88" rx="10" ry="12" fill="url(#foxGradientEyeIris)" />
+              <ellipse cx="110" cy="88" rx="10" ry="12" fill="url(#foxGradientEyeIris)" />
+              <ellipse cx="78" cy="90" rx="5" ry="6" fill="#08040f" />
+              <ellipse cx="110" cy="90" rx="5" ry="6" fill="#08040f" />
+              <circle cx="74" cy="84" r="3.6" fill="#ffffff" opacity="0.9" />
+              <circle cx="106" cy="84" r="3.6" fill="#ffffff" opacity="0.9" />
+              <circle cx="82" cy="94" r="2.2" fill="#ffd5de" opacity="0.6" />
+              <circle cx="114" cy="94" r="2.2" fill="#ffd5de" opacity="0.6" />
+              <path d="M94 102c-10 0-18 6-18 12 0 6 8 12 18 12s18-6 18-12c0-6-8-12-18-12z" fill="url(#foxGradientNose)" />
+              <path d="M80 114c8 12 20 12 28 0" fill="none" stroke="#3b1d30" stroke-width="4" stroke-linecap="round" />
+              <path d="M68 108c-6 0-10 6-10 10 0 4 4 8 8 8" fill="none" stroke="#ffb2bc" stroke-width="4" stroke-linecap="round" opacity="0.7" />
+              <path d="M122 108c6 0 10 6 10 10 0 4-4 8-8 8" fill="none" stroke="#ffb2bc" stroke-width="4" stroke-linecap="round" opacity="0.7" />
+              <ellipse cx="94" cy="128" rx="30" ry="18" fill="rgba(255, 198, 196, 0.22)" opacity="0.5" />
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="fox-shadow"></div>
+    </div>
+    <button class="music-toggle" id="music-toggle" aria-label="Включить/выключить музыку" type="button">
+      <svg class="music-toggle__icon music-toggle__icon--on" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+        <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+      </svg>
+      <svg class="music-toggle__icon music-toggle__icon--off" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+        <path d="M23 9l-6 6M17 9l6 6"/>
+      </svg>
+    </button>
+    <audio id="background-music" loop preload="auto"></audio>
+    <main class="page-wrapper">
+      <section class="hero" id="top">
+        <div class="hero-background">
+          <div class="hero-glow hero-glow--1"></div>
+          <div class="hero-glow hero-glow--2"></div>
+          <div class="hero-glow hero-glow--3"></div>
+          <div class="hero-particles"></div>
+        </div>
+        <div class="hero-content">
+          <div class="hero-copy">
+            <div class="hero-sparkles">
+              <span class="sparkle sparkle--1"></span>
+              <span class="sparkle sparkle--2"></span>
+              <span class="sparkle sparkle--3"></span>
+              <span class="sparkle sparkle--4"></span>
+            </div>
+            <span class="hero-date hero-date--animated" data-reveal>05.11.25</span>
+            <h1 class="hero-title--animated" data-reveal>С Днём Рождения!</h1>
+            <p class="lead lead--animated" data-reveal>
+              Нори уже здесь, чтобы сопровождать тебя.
+            </p>
+            <span class="hero-note hero-note--animated" data-reveal></span>
+          </div>
+          <div class="hero-celebration" data-reveal>
+            <div class="flower flower--1"></div>
+            <div class="flower flower--3"></div>
+            <div class="flower flower--4"></div>
+            <div class="flower flower--5"></div>
+            <div class="flower flower--6"></div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="fox-story" id="fox">
+        <div class="fox-info" data-reveal>
+          <h2>Нори — проводник этого места</h2>
+          <p>
+            Она появляется первой, чтобы поздравить и убедиться, что ты не пропустишь ни одной детали.
+          </p>
+        </div>
+        <div class="fox-tips" data-reveal>
+          <h3>Как подружиться</h3>
+          <ul>
+            <li>Щёлкни в любом месте — Нори побежит туда вслед за твоим жестом</li>
+            <li>Нажми на Нори и она поговорит с тобой</li>
+            <li>Оставь её на несколько секунд — она сама придумает маршрут</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="games-carousel" id="games">
+        <div class="games-carousel__header" data-reveal>
+          <h2>Мини-игры</h2>
+          <p>Выбери игру, используя стрелки, и попробуй побить рекорд!</p>
+        </div>
+        <div class="games-carousel__container">
+          <button class="games-carousel__nav games-carousel__nav--prev" aria-label="Предыдущая игра" type="button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <div class="games-carousel__track">
+            <section class="fox-runner game-slide game-slide--active" id="garden" data-fox-runner>
+              <div class="fox-runner__copy" data-reveal>
+                <span class="fox-runner__tag">Мини-игра</span>
+                <h2>Нори бежит по тропе</h2>
+                <p>
+                  Это путешествие по светящейся тропе. Помоги Нори перепрыгивать через препятствия и собирать очки. Чем дольше бежишь — тем быстрее ритм.
+                </p>
+                <div class="fox-runner__stats">
+                  <div class="fox-runner__stat">
+                    <span>Очки</span>
+                    <strong data-runner-score>000</strong>
+                  </div>
+                  <div class="fox-runner__stat fox-runner__stat--best">
+                    <span>Рекорд</span>
+                    <strong data-runner-best>000</strong>
+                  </div>
+                </div>
+                <button class="fox-runner__start" type="button" data-runner-start>Старт</button>
+                <p class="fox-runner__message" data-runner-message aria-live="polite"></p>
+              </div>
+              <div class="fox-runner__stage" data-reveal>
+                <canvas
+                  id="fox-runner-canvas"
+                  width="720"
+                  height="240"
+                  role="img"
+                  aria-label="Лиса Нори бежит по тропе, перепрыгивая препятствия"
+                ></canvas>
+                <div class="fox-runner__hint">Нажми пробел или коснись поля, чтобы прыгать</div>
+              </div>
+            </section>
+
+            <section class="fox-flight game-slide" id="flight" data-fox-flight>
+              <div class="fox-flight__copy" data-reveal>
+                <span class="fox-flight__tag">Мини-игра</span>
+                <h2>Нори парит над огнями</h2>
+                <p>
+                  Теперь Нори умеет летать. Проведи её через арки света — избегай кромок и собирай мерцающие монетки.
+                </p>
+                <div class="fox-flight__stats">
+                  <div class="fox-flight__stat">
+                    <span>Очки</span>
+                    <strong data-flight-score>000</strong>
+                  </div>
+                  <div class="fox-flight__stat fox-flight__stat--best">
+                    <span>Рекорд</span>
+                    <strong data-flight-best>000</strong>
+                  </div>
+                </div>
+                <p class="fox-flight__message" data-flight-message aria-live="polite"></p>
+              </div>
+              <div class="fox-flight__stage" data-reveal>
+                <canvas
+                  id="fox-flight-canvas"
+                  width="640"
+                  height="360"
+                  role="img"
+                  aria-label="Лиса Нори перелетает через арки света"
+                ></canvas>
+                <div class="fox-flight__hint">Коснись неба или нажми пробел</div>
+              </div>
+            </section>
+
+            <section class="fox-sequence game-slide" id="sequence" data-fox-sequence>
+              <div class="fox-sequence__copy" data-reveal>
+                <span class="fox-sequence__tag">Мини-игра</span>
+                <h2>Повтори последовательность</h2>
+                <p>
+                  Запомни, в каком порядке загораются фонарики, и повтори последовательность. С каждым раундом становится сложнее!
+                </p>
+                <div class="fox-sequence__stats">
+                  <div class="fox-sequence__stat">
+                    <span>Раунд</span>
+                    <strong data-sequence-round>1</strong>
+                  </div>
+                  <div class="fox-sequence__stat fox-sequence__stat--best">
+                    <span>Рекорд</span>
+                    <strong data-sequence-best>0</strong>
+                  </div>
+                </div>
+                <p class="fox-sequence__message" data-sequence-message aria-live="polite">Нажми старт, чтобы начать</p>
+              </div>
+              <div class="fox-sequence__stage" data-reveal>
+                <div class="fox-sequence__lanterns" id="sequence-lanterns">
+                  <button class="lantern-button" data-lantern="0" aria-label="Фонарик 1">
+                    <div class="lantern-button__light"></div>
+                    <div class="lantern-button__body"></div>
+                    <div class="lantern-button__glass"></div>
+                  </button>
+                  <button class="lantern-button" data-lantern="1" aria-label="Фонарик 2">
+                    <div class="lantern-button__light"></div>
+                    <div class="lantern-button__body"></div>
+                    <div class="lantern-button__glass"></div>
+                  </button>
+                  <button class="lantern-button" data-lantern="2" aria-label="Фонарик 3">
+                    <div class="lantern-button__light"></div>
+                    <div class="lantern-button__body"></div>
+                    <div class="lantern-button__glass"></div>
+                  </button>
+                  <button class="lantern-button" data-lantern="3" aria-label="Фонарик 4">
+                    <div class="lantern-button__light"></div>
+                    <div class="lantern-button__body"></div>
+                    <div class="lantern-button__glass"></div>
+                  </button>
+                  <button class="lantern-button" data-lantern="4" aria-label="Фонарик 5">
+                    <div class="lantern-button__light"></div>
+                    <div class="lantern-button__body"></div>
+                    <div class="lantern-button__glass"></div>
+                  </button>
+                  <button class="lantern-button" data-lantern="5" aria-label="Фонарик 6">
+                    <div class="lantern-button__light"></div>
+                    <div class="lantern-button__body"></div>
+                    <div class="lantern-button__glass"></div>
+                  </button>
+                  <button class="lantern-button" data-lantern="6" aria-label="Фонарик 7">
+                    <div class="lantern-button__light"></div>
+                    <div class="lantern-button__body"></div>
+                    <div class="lantern-button__glass"></div>
+                  </button>
+                  <button class="lantern-button" data-lantern="7" aria-label="Фонарик 8">
+                    <div class="lantern-button__light"></div>
+                    <div class="lantern-button__body"></div>
+                    <div class="lantern-button__glass"></div>
+                  </button>
+                  <button class="lantern-button" data-lantern="8" aria-label="Фонарик 9">
+                    <div class="lantern-button__light"></div>
+                    <div class="lantern-button__body"></div>
+                    <div class="lantern-button__glass"></div>
+                  </button>
+                </div>
+                <button class="fox-sequence__start" data-sequence-start type="button">Старт</button>
+                <div class="fox-sequence__hint">Смотри внимательно и повторяй последовательность</div>
+              </div>
+            </section>
+          </div>
+          <button class="games-carousel__nav games-carousel__nav--next" aria-label="Следующая игра" type="button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+        <div class="games-carousel__indicators">
+          <button class="games-carousel__indicator games-carousel__indicator--active" data-slide="0" aria-label="Игра 1" type="button"></button>
+          <button class="games-carousel__indicator" data-slide="1" aria-label="Игра 2" type="button"></button>
+          <button class="games-carousel__indicator" data-slide="2" aria-label="Игра 3" type="button"></button>
+        </div>
+      </section>
+
+      <section class="letter" id="letter">
+        <div class="letter-shell" data-letter>
+          <div class="letter-intro">
+            <div class="letter-intro__badge" aria-hidden="true">
+              <span class="letter-intro__seal"></span>
+              <span class="letter-intro__note"></span>
+            </div>
+            <div class="letter-intro__copy">
+              <h3>Письмо</h3>
+              <p></p>
+            </div>
+            <button class="letter-toggle" type="button" aria-expanded="false">
+              <span class="letter-toggle__open">Открыть письмо</span>
+              <span class="letter-toggle__close">Спрятать письмо</span>
+            </button>
+          </div>
+          <article class="letter-sheet">
+            <p class="greeting"><span class="greeting-name">Бегимай</span>,</p>
+            <p class="body">
+              С днём рождения! Желаю тебе всего самого наилучшего.
+            </p>
+            <p class="body">
+              Береги себя, улыбайся чаще и верь, что впереди только лучшее.
+            </p>
+            <p class="signature">
+              <span class="signature-pre">С теплом,</span>
+              <span class="signature-name">Т. Т. Т</span>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="footer-notes" id="footer">
+        <div class="notes">
+          <p>
+            Когда понадобится ещё немного волшебства — просто вернись сюда. Фейерверки, Нори и огни
+            всегда готовы повторить праздник.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
